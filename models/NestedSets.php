@@ -65,7 +65,7 @@ class NestedSets extends ActiveRecord
                     $threadNode->lvl -= $delta; // Скорректировать уровень узла на разницу
                 }
             }
-            $items = array_merge($model, $thread);
+            $items = array_merge($items, $thread);
         }
         return $items;
     }
