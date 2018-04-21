@@ -10,15 +10,6 @@ use app\models\NestedSets;
 class SiteController extends Controller
 {
 
-    public function actions()
-    {
-        return [
-            'error' => [
-                'class' => 'yii\web\ErrorAction',
-            ],
-        ];
-    }
-
     public function actionIndex()
     {
         $form = new TreeForm();
@@ -29,6 +20,11 @@ class SiteController extends Controller
         $tree = NestedSets::findDefault();
 
         return $this->render('index', ['model' => $form, 'items' => $tree]);
+    }
+    
+    public function actionError()
+    {
+        return $this->redirect('/');
     }
 
     public function actionThread($ids)
