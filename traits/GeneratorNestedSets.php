@@ -1,21 +1,21 @@
 <?php
-namespace app\components;
 
-use yii\base\Object;
+namespace app\traits;
 
-class GeneratorNestedSets extends Object {
+trait GeneratorNestedSets
+{
     /*
      * Генерирует массив элементов, либо возвращает false в случае провала.
      * @return false/array
      */
-    public function generate($n = 5) {
+
+    public function generate($n = 5)
+    {
         // Нельзя создать дерево с количеством элементов меньше 1
         if ($n <= 0) {
             return false;
         }
         // Создать корневой узел дерева
-        // TODO: генерировать id автоматически
-        // TODO: внедрять нормальные данные
         $root = [
             'id' => 1,
             'name' => 1,
@@ -57,13 +57,13 @@ class GeneratorNestedSets extends Object {
                 ];
                 $result[] = $node;
                 //если узел может имеет потомков добавить его в очередь
-                if (($nrgt-$lft) > 1) {
+                if (($nrgt - $lft) > 1) {
                     $queue[] = $node;
                 }
                 //если узел последний закончить генерацию потомков,
                 if ($nrgt === $n) {
                     break;
-                //иначе подготовить данные для следующего узла
+                    //иначе подготовить данные для следующего узла
                 } else {
                     $id++;
                     $lft = $nrgt + 1;
@@ -73,4 +73,5 @@ class GeneratorNestedSets extends Object {
 
         return $result;
     }
+
 }

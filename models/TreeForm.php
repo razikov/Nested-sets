@@ -16,10 +16,13 @@ use yii\base\Model;
  *
  * @author razikov
  */
-class TreeForm extends Model {
+class TreeForm extends Model
+{
+
     public $number;
 
-    public function rules() {
+    public function rules()
+    {
         return [
             ['number', 'integer', 'min' => 1, 'max' => 30000,
                 'message' => 'Значением поля должно быть целое число',
@@ -28,4 +31,5 @@ class TreeForm extends Model {
             ['number', 'required', 'message' => 'Поле не может быть пустым'],
         ];
     }
+
 }

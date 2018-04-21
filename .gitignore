@@ -1,0 +1,6 @@
+/nbproject/*
+/vendor/*
+/tests/*
+/views/site/entry-confirm.php
+/views/site/entry.php
+/Nested-sets

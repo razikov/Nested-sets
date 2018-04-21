@@ -28,7 +28,7 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'SmileExpo',
+        'brandLabel' => 'Tests',
         //'brandUrl' => Yii::$app->homeUrl,
         'brandUrl' => Url::toRoute(['/']),
         'options' => [

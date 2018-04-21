@@ -1,6 +1,8 @@
 # Nested-sets
 
-Для установки разверни каркас базового приложения на Yii2<br/>
-http://www.yiiframework.com/doc-2.0/guide-start-installation.html
-
-Скачай и замени все файлы в базовом приложении
+* Скачать, распаковать
+* Настроить виртуальный хост. См. https://www.yiiframework.com/doc/guide/2.0/ru/start-installation#recommended-apache-configuration
+* Создать БД. Прописать корректные настройки к БД (хост, пользователь, пароль) в /config/db.php
+* composer install
+* yii migrate/up
+* profit!
