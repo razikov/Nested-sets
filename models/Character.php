@@ -20,6 +20,7 @@ class Character extends \yii\db\ActiveRecord
     // Что он любит и что не любит? Каковы его хобби и интересы? Моральные воззрения и верования?
     // Каковые его мотивы? Планы на будущее?
     // Эти знания могут быть доступны остальным, либо у вас могут быть кое-какие секреты даже от друзей
+
     public $skill_list;
 //    public $trait_list;
     public $advantage_list;
@@ -572,56 +573,10 @@ class Character extends \yii\db\ActiveRecord
         return \yii\helpers\ArrayHelper::getValue($dmg, $this->strength, '?');
     }
     
-//    public function getAvailableTraits()
-//    {
-//        return \yii\helpers\ArrayHelper::map(\app\models\Advantages::find()->orderBy(['id' => SORT_DESC])->all(), 'id', function($item) {
-//            return $item->name_rus . ' [' . $item->getMetaTypeName($item->type) . ']';
-//        });
-//    }
-//    
-//    public function getAddTrait()
-//    {
-//        return null;
-//    }
-//    
-//    public function setAddTrait($value)
-//    {
-//        $advantage = \app\models\Advantages::find()->where(['id' => $value])->one();
-//        if ($advantage) {
-//            $ref_trait = ReferenceTraits::find()->where([
-//                'advantage_id' => $advantage->id,
-//                'character_id' => $this->id,
-//            ])->one();
-//            if (!$ref_trait) {
-//                $ref_trait = new ReferenceTraits();
-//                $ref_trait->advantage_id = $advantage->id;
-//                $ref_trait->character_id = $this->id;
-//                $ref_trait->save();
-//            }
-//        }
-//        return $this;
-//    }
-//    
-//    public function getRefTraits()
-//    {
-//        return $this->hasMany(ReferenceTraits::className(), ['character_id' => 'id']);
-//    }
-//    
-//    public function getTraits()
-//    {
-//        return $this->hasMany(Advantages::className(), ['id' => 'advantage_id'])
-//            ->via('refTraits');
-//    }
-//    
-//    public function getTraitsDP()
-//    {
-//        return new \yii\data\ActiveDataProvider([
-//            'query' => ReferenceTraits::find()->where([
-//                'character_id' => $this->id,
-//            ]),
-//            'pagination' => [
-//                'pageSize' => 0,
-//            ],
-//        ]);
-//    }
+    public function getAvailableTraits()
+    {
+        return \yii\helpers\ArrayHelper::map(\app\models\Advantages::find()->orderBy(['id' => SORT_DESC])->all(), 'id', function($item) {
+            return $item->name_rus . ' [' . $item->getMetaTypeName($item->type) . ']';
+        });
+    }
 }

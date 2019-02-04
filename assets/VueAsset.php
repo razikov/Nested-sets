@@ -8,7 +8,6 @@ class VueAsset extends AssetBundle
 {
     public $sourcePath = '@app/node_modules/vue/dist';
     public $js = [
-        'vue.js',
-//        'vue.esm.js',
+        'vue.esm.js',
     ];
 }

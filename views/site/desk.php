@@ -24,8 +24,12 @@ app\assets\AppAsset::register($this);
     </g>
     <g className='hexagon-group'>
         <g className='hexagon'>
-            <polygon points="170,96.60254037844386 165,105.26279441628824 155,105.26279441628824 150,96.60254037844386 155,87.94228634059948 165,87.94228634059948 " fill={fillId} style={cellStyle} />
+            <polygon points="170,96.60254037844386 165,105.26279441628824 155,105.26279441628824 150,96.60254037844386 155,87.94228634059948 165,87.94228634059948 " fill="" style="" />
         </g>
     </g>
     </svg>
+</div>
+
+<div style="width: 100%; height: 500px; overflow: auto;">
+    <canvas id="hexagonCanvas" width="2800" height="2450" style="border: 0; display: block; margin: 0 auto; padding: 5px;">
 </div>

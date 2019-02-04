@@ -18,7 +18,6 @@ class SiteController extends Controller
 
         return parent::beforeAction($action);
     }
-
     public function actions()
     {
         return [
@@ -67,6 +66,11 @@ class SiteController extends Controller
         var_dump($a);exit;
         exit;
         
+        $d1 = mt_rand(1, 6);
+        $d2 = mt_rand(1, 6);
+        $d3 = mt_rand(1, 6);
+        var_dump($d1, $d2, $d3, $d1+$d2+$d3);
+        
         $tree = new \app\models\Tree();
         $data = \app\fixtures\DataTree::getData();
 //        $treeData = $tree->createTree(['userId', 'groupId', 'id'], $data);
@@ -83,7 +87,7 @@ class SiteController extends Controller
     {
         return $this->render('desk', []);
     }
-//    
+    
 //    public function actionError()
 //    {
 //        return $this->redirect('/');
