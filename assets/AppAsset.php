@@ -23,6 +23,7 @@ class AppAsset extends AssetBundle
     ];
     public $js = [
         'js/jstree/jstree.js',
+        'js/board.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

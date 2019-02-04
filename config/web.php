@@ -8,7 +8,6 @@ $config = [
     'bootstrap' => ['log'],
     'components' => [
         'request' => [
-            // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'SX91nJePfKE1e1oX-5mCTZue_78cADop',
         ],
         'cache' => [
@@ -19,9 +18,6 @@ $config = [
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
-            // send all mails to a file by default. You have to set
-            // 'useFileTransport' to false and configure a transport
-            // for the mailer to send real emails.
             'useFileTransport' => true,
         ],
         'log' => [
@@ -41,16 +37,33 @@ $config = [
             'rules' => [
                 'thread/<ids:(\d+)(,\d+)+>' => 'site/thread',
                 'thread/<ids:(\d+)>' => 'site/thread',
+                
             ],
+        ],
+        'storageContainer' => [
+            'class' => \app\components\StorageContainer::class,
+            'storages' => [
+                1 => [
+                    'class' => \app\components\LocalStorage::class,
+                    'basePath' => '@app/web/uploads',
+                    'baseUrl' => '/uploads',
+                ],
+            ],
+        ],
+        'user' => [
+            'class' => yii\web\User::class,
+            'identityClass' => app\models\User::class,
+            'enableAutoLogin' => true,
+            'loginUrl' => ['/site/login'],
         ],
 
         'defaultRoute' => 'site/index',
     ],
     'params' => $params,
+    'language' => 'ru-RU',
 ];
 
 if (YII_ENV_DEV) {
-    // configuration adjustments for 'dev' environment
     $config['bootstrap'][] = 'debug';
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',

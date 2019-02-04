@@ -1,0 +1,15 @@
+{
+  "name": "Nested-sets",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/razikov/Nested-sets.git",
+  "author": "Разиков Алексей <razikov88@yandex.ru>",
+  "license": "MIT",
+  "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "ckeditor/ckeditor5-build-classic",
+    "axios": "^0.18.0",
+    "bootstrap-select": "^1.13.5",
+    "jquery-datetimepicker": "^2.5.20",
+    "vue": "^2.5.22"
+  }
+}
