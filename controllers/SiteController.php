@@ -29,48 +29,47 @@ class SiteController extends Controller
     
     public function actionIndex()
     {
-//        $a = new \app\models\Advantage();
-        $file = Yii::getAlias('@app') . '/gcs_library/Library/Advantages/Basic Set.adq';
-//        $file = Yii::getAlias('@app') . '/gcs_library/Library/Characters/Basic Set/Iotha.gcs';
-//        $file = Yii::getAlias('@app') . '/gcs_library/Library/Characters/Basic Set/Louis d\'Antares.gcs';
-//        $file = Yii::getAlias('@app') . '/gcs_library/Library/Characters/Basic Set/Dai Blackthorn.gcs';
-//        $file = Yii::getAlias('@app') . '/gcs_library/Library/Races/Basic Set/Dragon.gct';
-        $z = new \XMLReader();
-//        $z->open($file);
-        $z->XML(file_get_contents($file));
-        
-        $i = 0;
-        while ($z->read()) {
-            $obj = $z->expand();
-            if ($obj->nodeType == 1) {
-                $obj->nodeName;
-                $obj->nodeValue;
-                if ($obj->nodeName == 'advantage_list') {
-                    $advantageList = new \app\models\gcsAdapter\AdvantageList($obj);
-                    var_dump($advantageList->advantage['Zeroed']);exit;
-                } elseif ($obj->nodeName == 'advantage') {
-                    $advantage = new \app\models\gcsAdapter\Advantage($obj);
-//                    var_dump($advantage->result['categories']);exit;
-                } elseif ($obj->nodeName == 'character') {
-                    $character = new \app\models\gcsAdapter\Character($obj);
-                    return $this->render('//gcs/character', ['model' => $character]);
-                } elseif ($obj->nodeName == 'template') {
-                    $template = new \app\models\gcsAdapter\Template($obj);
-                    return $this->render('//gcs/template', ['model' => $template]);
-                }
-            }
-            $i++;
-            
+        $form = new TreeForm();
+        if ($form->load(Yii::$app->request->post()) && $form->validate()) {
+            NestedSets::generateData($form->number);
         }
-        $a = \app\models\Advantage::find()->one();
-        var_dump($a);exit;
-        exit;
-        
-        $d1 = mt_rand(1, 6);
-        $d2 = mt_rand(1, 6);
-        $d3 = mt_rand(1, 6);
-        var_dump($d1, $d2, $d3, $d1+$d2+$d3);
-        
+
+        $tree = NestedSets::findDefault();
+
+        return $this->render('index', ['model' => $form, 'items' => $tree]);
+    }
+    
+    public function actionModal()
+    {
+        $provider = new \yii\data\ActiveDataProvider([
+            'query' => \app\models\Articles::find(),
+            'pagination' => [
+                'pageSize' => 20,
+            ],
+        ]);
+        return $this->render('modal', ['dataProvider' => $provider]);
+    }
+    
+    public function actionUpdateModalArticle($id)
+    {
+        $model = \app\models\Articles::find()->where(['id' => $id])->one();
+        if (!$model) {
+            throw new NotFoundHttpException('Запись не найдена');
+        }
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return ['model' => $model];
+        }
+        return ['form' => $this->renderPartial('//article/updateModal', ['model' => $model])];
+    }
+    
+    public function actionDesk()
+    {
+        return $this->render('desk', []);
+    }
+    
+    public function actionTree()
+    {
         $tree = new \app\models\Tree();
         $data = \app\fixtures\DataTree::getData();
 //        $treeData = $tree->createTree(['userId', 'groupId', 'id'], $data);
@@ -79,13 +78,7 @@ class SiteController extends Controller
 //        $countData = $tree->getTreeCount('param1', $treeData);
         $availablePaths = $tree->getMaterializedPathsTree($treeData);
         $getKey = $tree->getBranchPath($availablePaths[1]);
-//        var_dump(\yii\helpers\ArrayHelper::getValue($treeData, $getKey), $availablePaths, $treeData['rows'][6]['rows'][2]);
-        exit;
-    }
-    
-    public function actionDesk()
-    {
-        return $this->render('desk', []);
+        var_dump(\yii\helpers\ArrayHelper::getValue($treeData, $getKey), $availablePaths, $treeData['rows'][6]['rows'][2]);
     }
     
 //    public function actionError()

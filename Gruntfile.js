@@ -2,7 +2,7 @@ const babel = require("rollup-plugin-babel");
 const resolve = require("rollup-plugin-node-resolve");
 const tilde_importer = require("grunt-sass-tilde-importer");
 const nodeGlobals = require("rollup-plugin-node-globals");
-const vue = require("rollup-plugin-vue");
+const vue = require("rollup-plugin-vue2");
 const babelrc = require("babelrc-rollup");
 const commonjs = require("rollup-plugin-commonjs");
 const replace = require("rollup-plugin-replace");
@@ -16,23 +16,26 @@ module.exports = function (grunt) {
                 format: "iife",
                 interop: null,
                 plugins: [
-                    alias({
-                        'vue': 'vue/dist/vue.runtime.esm.js'
-                    }),
-                    replace({"process.env.NODE_ENV": JSON.stringify("dev")}),
+//                    alias({
+//                        'vue': '../../node_modules/vue/dist/vue.runtime.esm.js'
+//                    }),
                     resolve({
                         jsnext: true,
                         main: true,
                         browser: true
                     }),
+                    vue(),
                     babel({
                         babelrc: false,
+                        sourceMap: true,
+                        presets: ['@babel/preset-env'],
                         exclude: ['./node_modules/**/*'],
-//                        presets: ["es2015"],
-//                        plugins: ["external-helpers"],
                         plugins: ["@babel/plugin-proposal-class-properties"],
                     }),
                     nodeGlobals(),
+                    replace({
+                        'process.env.NODE_ENV': JSON.stringify('dev')
+                    }),
                 ]
             },
             default: {

@@ -49,6 +49,7 @@ class Articles extends \yii\db\ActiveRecord
                 'class' => BlameableBehavior::class,
                 'createdByAttribute' => 'created_by',
                 'updatedByAttribute' => false,
+                'defaultValue' => 0,
             ],
         ];
     }

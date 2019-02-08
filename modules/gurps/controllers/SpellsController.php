@@ -1,32 +1,38 @@
 <?php
 
-namespace app\controllers;
+namespace app\modules\gurps\controllers;
 
 use Yii;
 use yii\web\Controller;
 
-class ArticleController extends Controller
+class SpellsController extends Controller
 {
     
     public function actionList()
     {
-        $articles = \app\models\Articles::find()->all();
+//        $filter = new \app\models\AdvantagesForm();
+//        $filter->load(Yii::$app->request->queryParams);
         
-        if (!$articles) {
-            throw new \yii\web\NotFoundHttpException("Статей не найдено");
-        }
+        $model = new \yii\data\ActiveDataProvider([
+//            'query' => \app\models\Advantages::getQuery($filter)->orderBy(['id' => SORT_DESC]),
+            'query' => \app\models\Spell::find()->orderBy(['id' => SORT_DESC]),
+            'pagination' => [
+                'pageSize' => 20,
+            ],
+        ]);
         
         return $this->render('list', [
-            'articles' => $articles,
+            'model' => $model,
+//            'filter' => $filter,
         ]);
     }
     
     public function actionView($id)
     {
-        $model = \app\models\Articles::find()->where(['id' => $id])->one();
+        $model = \app\models\Spell::find()->where(['id' => $id])->one();
         
         if (!$model) {
-            throw new \yii\web\NotFoundHttpException("Статья не найдена");
+            throw new \yii\web\NotFoundHttpException();
         }
         
         return $this->render('view', [
@@ -36,11 +42,14 @@ class ArticleController extends Controller
 
     public function actionCreate()
     {
-        $model = new \app\models\Articles();
+        $model = new \app\models\Spell();
         
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $model->save();
+            $this->redirect(['spells/list']);
         }
+        
+//        var_dump($model);exit;
         
         return $this->render('create', [
             'model' => $model,
@@ -49,7 +58,7 @@ class ArticleController extends Controller
     
     public function actionUpdate($id)
     {
-        $model = \app\models\Articles::find()->where(['id' => $id])->one();
+        $model = \app\models\Spell::find()->where(['id' => $id])->one();
         
         if (!$model) {
             throw new \yii\web\NotFoundHttpException();
@@ -66,7 +75,7 @@ class ArticleController extends Controller
 
     public function actionDelete($id)
     {
-        $model = \app\models\Articles::find()->where(['id' => $id])->one();
+        $model = \app\models\Spell::find()->where(['id' => $id])->one();
         
         if (!$model) {
             throw new \yii\web\NotFoundHttpException();

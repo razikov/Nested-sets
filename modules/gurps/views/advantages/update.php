@@ -3,48 +3,15 @@ use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 use app\widgets\Select;
 use app\widgets\CKEditor;
-use app\widgets\DateTimePicker;
 
 $form = ActiveForm::begin([
         
 ]); 
 
-
-//obj{
-//    p1: ...,
-//    p2: ...,
-//    p3: ...,
-//    items: [
-//        obj{...}
-//    ],
-//}
-
-// Есть row а есть listRow
-//collectionObj{
-//    items: [
-//        obj{
-//            p1: ...,
-//            p2: ...,
-//            p3: ...,
-//        }, ...
-//    ],
-//    itemsContainer: [
-//        objContainer{
-//            items: [
-//                obj{...}
-//            ]
-//            itemsContainer: [
-//                objContainer{...},
-//            ],
-//        },
-//    ],
-//}
-
 ?>
 <div class="content--header">
     <h1 class="title"><?= $this->title ?></h1>
 </div>
-
 <fieldset class="fieldset">
     <div class="fieldset--row">
         <div class="row">
@@ -52,35 +19,27 @@ $form = ActiveForm::begin([
                 <div class="fieldset--padding">
                     <div class="row">
                         <div class="col-sm-12 col-xl-6">
-                            <?= $form->field($model, 'title') ?>
-                        </div>
-                        <div class="col-sm-12 col-xl-6">
-                            <?= $form->field($model, 'publish_at')->widget(
-                                DateTimePicker::class,
-                                [
-                                    'format' => 'Y-m-d H:i:00',
-                                    'options' => [
-                                        'class' => 'form-control input-sm',
-                                    ],
-                                ]
-                            ); ?>
-                        </div>
-                        <div class="col-sm-12 col-xl-6">
-                            <?= $form->field($model, 'tagIds')->widget(
+                            <?= $form->field($model, 'categories')->widget(
                                 Select::class,
                                 [
                                     'options' => [
                                         'class' => 'form-control ',
                                         'data-style' => 'btn-default',
                                         'data-width' => '100%',
-                                        'prompt' => 'Не указано',
+//                                        'disabled' => true,
                                     ],
-                                    'items' =>  $model->getAvailableTagList(),
+                                    'items' =>  $model->getAvailableCategories(),
                                 ]
                             ); ?>
                         </div>
                         <div class="col-sm-12 col-xl-6">
-                            <?= $form->field($model, 'description')->widget(
+                            <?= $form->field($model, 'name_rus') ?>
+                        </div>
+                        <div class="col-sm-12 col-xl-6">
+                            <?= $form->field($model, 'name') ?>
+                        </div>
+                        <div class="col-sm-12 col-xl-6">
+                            <?= $form->field($model, 'description_rus')->widget(
                                 CKEditor::class,
                                 [
                                     'options' => [
@@ -90,15 +49,21 @@ $form = ActiveForm::begin([
                             ); ?>
                         </div>
                         <div class="col-sm-12 col-xl-6">
-                            <?= $form->field($model, 'content')->widget(
-                                CKEditor::class,
+                            <?= $form->field($model, 'type')->widget(
+                                Select::class,
                                 [
                                     'options' => [
-                                        'class' => 'form-control',
-                                        'language' => 'ru'
+                                        'class' => 'form-control ',
+                                        'data-style' => 'btn-default',
+                                        'data-width' => '100%',
+                                        'multiple' => true,
                                     ],
+                                    'items' =>  $model->getAvailableTypes(),
                                 ]
                             ); ?>
+                        </div>
+                        <div class="col-sm-12 col-xl-6">
+                            <?= $form->field($model, 'cost') ?>
                         </div>
                     </div>
                 </div>
@@ -109,7 +74,7 @@ $form = ActiveForm::begin([
     
 <div class="content--footer--toolbar">
     <?= Html::submitButton(
-        Yii::t('app', 'Добавить'),
+        Yii::t('app', 'Сохранить'),
         ['class' => 'btn btn-green']
     ) ?>
     <a class="btn btn-outline btn-outline--green" href="<?= \yii\helpers\Url::toRoute('list') ?>">

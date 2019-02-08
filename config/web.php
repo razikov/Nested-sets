@@ -37,7 +37,6 @@ $config = [
             'rules' => [
                 'thread/<ids:(\d+)(,\d+)+>' => 'site/thread',
                 'thread/<ids:(\d+)>' => 'site/thread',
-                
             ],
         ],
         'storageContainer' => [
@@ -56,8 +55,12 @@ $config = [
             'enableAutoLogin' => true,
             'loginUrl' => ['/site/login'],
         ],
-
         'defaultRoute' => 'site/index',
+    ],
+    'modules' => [
+        'gurps' => [
+            'class' => 'app\modules\gurps\Module',
+        ],
     ],
     'params' => $params,
     'language' => 'ru-RU',

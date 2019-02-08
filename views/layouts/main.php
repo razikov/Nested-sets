@@ -12,7 +12,7 @@ use app\assets\VueAsset;
 use yii\helpers\Url;
 
 AppAsset::register($this);
-VueAsset::register($this);
+//VueAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>

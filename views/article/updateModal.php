@@ -1,50 +1,31 @@
 <?php 
+
 use yii\bootstrap\ActiveForm;
+use yii\bootstrap\Modal;
 use yii\helpers\Html;
 use app\widgets\Select;
 use app\widgets\CKEditor;
 use app\widgets\DateTimePicker;
 
+Modal::begin([
+    'header'=>'<h4>Обновление статьи</h4>',
+    'size'=>'modal-lg',
+    'footer' =>
+        Html::button(Yii::t('app', 'Закрыть'), ['class' => 'btn btn-default', 'data-dismiss' => 'modal']).
+        Html::button(
+            $model->isNewRecord ? Yii::t('app', 'Добавить') : Yii::t('app', 'Сохранить'),
+            ['class' => 'btn btn-primary js-submit']
+        ),
+]);
+
 $form = ActiveForm::begin([
         
 ]); 
-
-
-//obj{
-//    p1: ...,
-//    p2: ...,
-//    p3: ...,
-//    items: [
-//        obj{...}
-//    ],
-//}
-
-// Есть row а есть listRow
-//collectionObj{
-//    items: [
-//        obj{
-//            p1: ...,
-//            p2: ...,
-//            p3: ...,
-//        }, ...
-//    ],
-//    itemsContainer: [
-//        objContainer{
-//            items: [
-//                obj{...}
-//            ]
-//            itemsContainer: [
-//                objContainer{...},
-//            ],
-//        },
-//    ],
-//}
 
 ?>
 <div class="content--header">
     <h1 class="title"><?= $this->title ?></h1>
 </div>
-
 <fieldset class="fieldset">
     <div class="fieldset--row">
         <div class="row">
@@ -106,14 +87,7 @@ $form = ActiveForm::begin([
         </div>
     </div>
 </fieldset>
-    
-<div class="content--footer--toolbar">
-    <?= Html::submitButton(
-        Yii::t('app', 'Добавить'),
-        ['class' => 'btn btn-green']
-    ) ?>
-    <a class="btn btn-outline btn-outline--green" href="<?= \yii\helpers\Url::toRoute('list') ?>">
-        <?=Yii::t('app', 'Отмена')?>
-    </a>
-</div>
-<?php ActiveForm::end(); ?>
+<?php 
+ActiveForm::end();
+Modal::end();
+?>
