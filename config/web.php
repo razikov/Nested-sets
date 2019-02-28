@@ -5,7 +5,7 @@ $params = require(__DIR__ . '/params.php');
 $config = [
     'id' => 'tests',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'bootstrap' => ['log', 'debug'],
     'components' => [
         'request' => [
             'cookieValidationKey' => 'SX91nJePfKE1e1oX-5mCTZue_78cADop',
@@ -30,6 +30,7 @@ $config = [
             ],
         ],
         'db' => require(__DIR__ . '/db.php'),
+        'ilias' => require(__DIR__ . '/ilias.php'),
 
         'urlManager' => [
             'enablePrettyUrl' => true,
@@ -60,6 +61,9 @@ $config = [
     'modules' => [
         'gurps' => [
             'class' => 'app\modules\gurps\Module',
+        ],
+        'UserImportExport' => [
+            'class' => 'app\modules\UserImportExport\Module',
         ],
     ],
     'params' => $params,

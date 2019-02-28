@@ -13,19 +13,10 @@ use yii\web\AssetBundle;
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
  */
-class AppAsset extends AssetBundle
+class ElementAsset extends AssetBundle
 {
-    public $basePath = '@webroot';
-    public $baseUrl = '@web';
+    public $sourcePath = '@app/node_modules/element-ui/lib';
     public $css = [
-        'css/site.css',
-    ];
-    public $js = [
-        'js/app.js',
-//        'js/board.js',
-    ];
-    public $depends = [
-        'yii\web\YiiAsset',
-        'yii\bootstrap\BootstrapAsset',
+        'theme-chalk/index.css',
     ];
 }

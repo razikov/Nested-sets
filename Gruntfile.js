@@ -1,12 +1,13 @@
+const sass = require('node-sass');
 const babel = require("rollup-plugin-babel");
+const vue = require("rollup-plugin-vue");
+const alias = require('rollup-plugin-alias');
 const resolve = require("rollup-plugin-node-resolve");
-const tilde_importer = require("grunt-sass-tilde-importer");
 const nodeGlobals = require("rollup-plugin-node-globals");
-const vue = require("rollup-plugin-vue2");
-const babelrc = require("babelrc-rollup");
 const commonjs = require("rollup-plugin-commonjs");
 const replace = require("rollup-plugin-replace");
-const alias = require('rollup-plugin-alias');
+const uglify = require("rollup-plugin-uglify");
+
 
 module.exports = function (grunt) {
     grunt.initConfig({
@@ -19,22 +20,21 @@ module.exports = function (grunt) {
 //                    alias({
 //                        'vue': '../../node_modules/vue/dist/vue.runtime.esm.js'
 //                    }),
+                    replace({
+                        'process.env.NODE_ENV': JSON.stringify('developer')
+                    }),
+                    babel({compact: false}),
                     resolve({
                         jsnext: true,
                         main: true,
                         browser: true
                     }),
-                    vue(),
-                    babel({
-                        babelrc: false,
-                        sourceMap: true,
-                        presets: ['@babel/preset-env'],
-                        exclude: ['./node_modules/**/*'],
-                        plugins: ["@babel/plugin-proposal-class-properties"],
+                    vue.default({
+                        compileTemplate: true,
                     }),
                     nodeGlobals(),
-                    replace({
-                        'process.env.NODE_ENV': JSON.stringify('dev')
+                    commonjs({
+                        include: [],
                     }),
                 ]
             },

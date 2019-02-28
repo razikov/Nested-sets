@@ -6,3 +6,4 @@
 /Nested-sets
 /node_modules
 .ac-php-conf.json
+/web/uploads/*

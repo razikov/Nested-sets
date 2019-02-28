@@ -9,7 +9,7 @@ use yii\behaviors\BlameableBehavior;
 
 class Articles extends \yii\db\ActiveRecord
 {
-    
+    public $currentState;
     public $tagIds;
 
     public static function tableName()

@@ -55,7 +55,8 @@ class Upload extends ActiveRecord
             [
                 'class' => BlameableBehavior::class,
                 'createdByAttribute' => 'created_by',
-                'updatedByAttribute' => 'created_by',
+                'updatedByAttribute' => false,
+                'defaultValue' => 1,
             ],
         ];
     }

@@ -29,14 +29,28 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'Tests',
-        //'brandUrl' => Yii::$app->homeUrl,
-        'brandUrl' => Url::toRoute(['/']),
+        'brandLabel' => 'ILIAS Module',
+        'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
-
+        echo Nav::widget([
+            'options' => ['class' => 'navbar-nav navbar-right'],
+            'items' => [
+                ['label' => \Yii::t('app', 'Пользователи'), 'url' => ['/UserImportExport/user/list']],
+                [
+                    'label' => \Yii::t('app', 'Импорт'),
+                    'items' => [
+                        ['label' => \Yii::t('app', 'Список'), 'url' => ['/UserImportExport/import-user/list']],
+                        ['label' => \Yii::t('app', 'Добавить'), 'url' => ['/UserImportExport/import-user/create']],
+                    ],
+                ],
+                [
+                    'label' => \Yii::t('app', 'Найти пароль'), 'url' => ['/UserImportExport/find-password/list']
+                ],
+            ]
+        ]);
     NavBar::end();
     ?>
 
@@ -50,7 +64,7 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; Razikov А.А. <?= date('Y') ?></p>
+        <p class="pull-left">&copy; Разиков А.А.</p>
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>
 </footer>

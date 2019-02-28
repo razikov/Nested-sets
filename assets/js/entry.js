@@ -3,16 +3,9 @@ import Hex from "./desk/Hex.js";
 import Orientation from "./desk/Orientation.js";
 import Point from "./desk/Point.js";
 import HexUtils from "./HexUtils.js";
-import Vue from "vue";
-import Character from "./Character.vue";
 
-function character(element, data) {
-    new Vue({
-        el: element,
-        data: data,
-        ...Character,
-    });
-}
+import App from "./components/App.js";
+import character from "./components/Character.js"
 
 function rectangle(mapWidth, mapHeight) {
     let hexas = [];
@@ -85,4 +78,5 @@ export {
     test,
     rectangle,
     character,
+    App,
 }
