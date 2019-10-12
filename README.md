@@ -16,9 +16,9 @@
 
 # Установка
 
-* Скачать, распаковать
-* Настроить виртуальный хост. См. https://www.yiiframework.com/doc/guide/2.0/ru/start-installation#recommended-apache-configuration
-* Создать БД. Прописать корректные настройки к БД (хост, пользователь, пароль) в /config/db.php
-* composer install
-* yii migrate/up
-* profit!
+1 git clone https://github.com/razikov/Nested-sets.git
+2 Создать БД. Прописать корректные настройки к БД (хост, пользователь, пароль) в /config/db.php
+3 из корня проекта выполнить:
+    3.1 composer install
+    3.2 ./yii migrate/up
+    3.3 ./yii serve
