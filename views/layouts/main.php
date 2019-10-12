@@ -8,6 +8,7 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use app\assets\VueAsset;
 use yii\helpers\Url;
 
 AppAsset::register($this);
@@ -55,12 +56,6 @@ AppAsset::register($this);
 </footer>
 
 <?php $this->endBody() ?>
-<script>
-$(document).ready(function () { $('#jstree').jstree(); });
-$('#jstree').on("changed.jstree", function (e, data) {
-    console.log(data.selected);
-});
-</script>
 </body>
 </html>
 <?php $this->endPage() ?>

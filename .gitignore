@@ -4,3 +4,6 @@
 /views/site/entry-confirm.php
 /views/site/entry.php
 /Nested-sets
+/node_modules
+.ac-php-conf.json
+/web/uploads/*

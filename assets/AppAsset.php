@@ -19,10 +19,10 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/site.css',
-        'js/jstree/themes/default/style.min.css',
     ];
     public $js = [
-        'js/jstree/jstree.js',
+        'js/app.js',
+//        'js/board.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

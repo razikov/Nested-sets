@@ -14,8 +14,6 @@ use app\traits\GeneratorNestedSets;
 class NestedSets extends ActiveRecord
 {
 
-    use GeneratorNestedSets;
-
     public static function tableName()
     {
         return '{{%nestedsets}}';
@@ -36,7 +34,7 @@ class NestedSets extends ActiveRecord
     public static function getRoot()
     {
         $root = new NestedSets();
-        $root->attributes = [ 'lvl' => 0, 'id' => 1, 'name' => 'root'];
+        $root->attributes = ['lvl' => 0, 'id' => 1, 'name' => 'root'];
         return $root;
     }
 
@@ -68,13 +66,6 @@ class NestedSets extends ActiveRecord
             $items = array_merge($items, $thread);
         }
         return $items;
-    }
-
-    public function generateData($n)
-    {
-        $data = NestedSets::generate($n);
-        NestedSets::deleteAll();
-        Yii::$app->db->createCommand()->batchInsert('nestedsets', ['id', 'name', 'lft', 'rgt', 'lvl'], $data)->execute();
     }
 
 }

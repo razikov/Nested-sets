@@ -2,7 +2,7 @@
 
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
-use app\helpers\ViewHelper as vh;
+use app\helpers\NestedSetsHelper;
 
 $this->title = 'Tests';
 
@@ -15,6 +15,6 @@ $this->title = 'Tests';
         echo Html::submitButton('Сгенерировать дерево', ['class' => 'btn btn-primary']);
         ActiveForm::end();
         echo '<br>';
-        echo vh::renderNestedSetTree($items);
+        echo NestedSetsHelper::renderNestedSetTree($items);
     ?>
 </div>
