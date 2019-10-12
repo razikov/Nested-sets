@@ -19,6 +19,6 @@
 1. git clone https://github.com/razikov/Nested-sets.git
 2. Создать БД. Прописать корректные настройки к БД (хост, пользователь, пароль) в /config/db.php
 3. из корня проекта выполнить:
-3.1. composer install
-3.2. ./yii migrate/up
-3.3. ./yii serve
+4. composer install
+5. ./yii migrate/up
+6. ./yii serve
