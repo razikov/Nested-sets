@@ -8,9 +8,9 @@
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "ckeditor/ckeditor5-build-classic",
     "axios": "^0.18.0",
+    "bootstrap-select": "^1.13.5",
     "element-ui": "^2.5.4",
     "jquery-datetimepicker": "^2.5.20",
-    "bootstrap-select": "^1.13.5",
     "liquor-tree": "^0.2.53",
     "vue": "^2.5.17"
   },
@@ -27,8 +27,8 @@
     "grunt-sass-tilde-importer": "^1.0.2",
     "node-sass": "^4.9.3",
     "rollup": "^1.1.2",
-    "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-alias": "^1.5.1",
+    "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-commonjs": "8.4",
     "rollup-plugin-node-globals": "^1.2.1",
     "rollup-plugin-node-resolve": "^3.3.0",
