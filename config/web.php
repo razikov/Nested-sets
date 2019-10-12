@@ -30,7 +30,6 @@ $config = [
             ],
         ],
         'db' => require(__DIR__ . '/db.php'),
-        'ilias' => require(__DIR__ . '/ilias.php'),
 
         'urlManager' => [
             'enablePrettyUrl' => true,
