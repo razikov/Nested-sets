@@ -30,6 +30,22 @@ $config = [
             ],
         ],
         'db' => require(__DIR__ . '/db.php'),
+        
+        'dictionary' => [
+            'class' => 'yii\db\Connection',
+            'dsn' => 'mysql:host=localhost;dbname=rus_dictionary',
+            'username' => 'root',
+            'password' => 'hexrf88',
+            'charset' => 'utf8',
+        ],
+        
+        'schedule' => [
+            'class' => 'yii\db\Connection',
+            'dsn' => 'mysql:host=localhost;dbname=schedule',
+            'username' => 'root',
+            'password' => 'hexrf88',
+            'charset' => 'utf8',
+        ],
 
         'urlManager' => [
             'enablePrettyUrl' => true,
@@ -37,6 +53,7 @@ $config = [
             'rules' => [
                 'thread/<ids:(\d+)(,\d+)+>' => 'site/thread',
                 'thread/<ids:(\d+)>' => 'site/thread',
+                'aoc/<action>' => 'adventofcode/<action>',
             ],
         ],
         'storageContainer' => [

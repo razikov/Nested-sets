@@ -21,6 +21,15 @@ class SiteController extends Controller
         return parent::beforeAction($action);
     }
     
+    public function actions()
+    {
+        return [
+            'error' => [
+                'class' => 'yii\web\ErrorAction',
+            ],
+        ];
+    }
+    
     public function actionIndex()
     {
         $form = new TreeForm();
@@ -49,10 +58,10 @@ class SiteController extends Controller
         var_dump(\yii\helpers\ArrayHelper::getValue($treeData, $getKey), $availablePaths, $treeData['rows'][6]['rows'][2]);
     }
     
-    public function actionError()
-    {
-        return $this->redirect('/');
-    }
+//    public function actionError()
+//    {
+//        return $this->redirect('/');
+//    }
     
     public function actionNestedSets()
     {
