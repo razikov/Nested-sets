@@ -3,6 +3,8 @@
 use yii\bootstrap\Modal;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use app\widgets\DatePicker;
+use app\widgets\TimePicker;
 
 /**
  * @var $this yii\web\View
@@ -28,9 +30,19 @@ use yii\widgets\ActiveForm;
 <?= $form->field($model, 'teacher')->textInput(['class' => 'form-control']); ?>
 <?= $form->field($model, 'name')->textInput(['class' => 'form-control']); ?>
 <?= $form->field($model, 'division')->textInput(['class' => 'form-control']); ?>
-<?= $form->field($model, 'wdate')->textInput(['class' => 'form-control']); ?>
-<?= $form->field($model, 'startTime')->textInput(['class' => 'form-control']); ?>
-<?= $form->field($model, 'endTime')->textInput(['class' => 'form-control']); ?>
+<?= $form->field($model, 'wdate')->widget(
+        DatePicker::class, [
+            'format' => 'Y.m.d',
+            'options' => [
+                'class' => 'form-control',
+            ],
+            'params' => [
+                'weeks' => true,
+            ],
+        ]);
+?>
+<?= $form->field($model, 'startTime')->widget(TimePicker::class, []); ?>
+<?= $form->field($model, 'endTime')->widget(TimePicker::class, []); ?>
 <?= $form->field($model, 'class')->textInput(['class' => 'form-control']); ?>
 <?php ActiveForm::end(); ?>
 <?php Modal::end() ?>

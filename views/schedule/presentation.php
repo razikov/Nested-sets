@@ -11,5 +11,8 @@ $this->title = 'Tests';
 <?= ListView::widget([
     'dataProvider' => $dataProvider,
     'itemView' => '_item',
+    'options' => [
+        'class' => 'list-view list-group list-group-flush'
+    ]
 ]); ?>
 

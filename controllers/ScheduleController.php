@@ -60,7 +60,7 @@ class ScheduleController extends Controller
             ->all();
         
         $busy = [];
-        $m = array('204', '303', '311', '323', '404', '406', '407', '408', '409', '410', '411', '412', '413', '424', '425');
+        $m = array_keys(\app\models\Classroom::getList());
         $h = array('8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18');
         //массив занятости, обнуленный
         foreach ($m as $aud) {

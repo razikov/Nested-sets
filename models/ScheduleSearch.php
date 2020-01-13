@@ -42,15 +42,15 @@ class ScheduleSearch extends Schedule
             ])
             ->andFilterWhere([
                 $tableName.'.id' => $this->id,
-                $tableName.'.name' => $this->name,
-                $tableName.'.division' => $this->division,
-                $tableName.'.teacher' => $this->teacher,
-                $tableName.'.cstudent' => $this->cstudent,
                 $tableName.'.wdate' => $this->wdate,
 //                $tableName.'.startTime' => $this->startTime,
 //                $tableName.'.endTime' => $this->endTime,
-                $tableName.'.class' => $this->class,
-            ]);
+            ])
+            ->andFilterWhere(['like', $tableName.'.name', $this->name])
+            ->andFilterWhere(['like', $tableName.'.division', $this->division])
+            ->andFilterWhere(['like', $tableName.'.teacher', $this->teacher])
+            ->andFilterWhere(['like', $tableName.'.class', $this->class])
+        ;
         
         return $query;
     }
