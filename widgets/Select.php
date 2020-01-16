@@ -4,7 +4,7 @@ namespace app\widgets;
 
 use yii\helpers\Html;
 use yii\widgets\InputWidget;
-use app\assets\BootstrapSelectPickerAsset;
+use app\assets\BootstrapSelectAsset;
 
 class Select extends InputWidget
 {
@@ -24,7 +24,7 @@ class Select extends InputWidget
             echo Html::dropDownList($this->name, $this->value, $this->items, $this->options);
         }
         $view = $this->getView();
-        BootstrapSelectPickerAsset::register($view);
+        BootstrapSelectAsset::register($view);
         $view->registerJs("$('#{$this->options['id']}').selectpicker();", \yii\web\View::POS_READY);
     }
 }

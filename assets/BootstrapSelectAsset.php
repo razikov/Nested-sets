@@ -2,17 +2,19 @@
 
 namespace app\assets;
 
-use yii\bootstrap\BootstrapPluginAsset;
 use yii\web\AssetBundle;
 
 class BootstrapSelectAsset extends AssetBundle
 {
-    public $sourcePath = '@bower/bootstrap-select/dist';
+    public $sourcePath = '@app/node_modules/bootstrap-select/dist';
     public $js = [
         'js/bootstrap-select.js',
     ];
+    public $css = [
+        'css/bootstrap-select.css',
+    ];
     public $depends = [
-        BootstrapPluginAsset::class,
+        'yii\web\YiiAsset',
     ];
 
     public function init()

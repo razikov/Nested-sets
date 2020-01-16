@@ -1,9 +1,10 @@
 <?php
 
+use app\models\InfoDivision;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use app\widgets\DatePicker;
-
+use app\widgets\Select;
 //$this->registerJs('$("body").on("click", ".js-filter", function () { $("#js-search").toggle(); });');
 ?>
 <?= ''//Html::a(Yii::t('app', 'Фильтр'), '#', ['class' => 'btn btn-success js-filter']) ?>
@@ -14,16 +15,23 @@ use app\widgets\DatePicker;
     <section class="content-filters">
         <div class="css-xs-padding row">
             <div class="col-sm-4">
-                <?= $form->field($model, 'teacher')->textInput(['class' => 'form-control']); ?>
+                <?= $form->field($model, 'IDDivision')->widget(
+                    Select::class, [
+                        'options' => [
+                            'class' => 'form-control',
+                            'data-style' => 'btn-default',
+                            'data-live-search' => 1,
+                            'prompt' => Yii::t('app', 'Ничего не выбрано'),
+                        ],
+                        'items' => InfoDivision::getList()
+                    ])
+                ?>
             </div>
             <div class="col-sm-4">
-                <?= $form->field($model, 'name')->textInput(['class' => 'form-control']); ?>
+                <?= $form->field($model, 'Name')->textInput(['class' => 'form-control']); ?>
             </div>
             <div class="col-sm-4">
-                <?= $form->field($model, 'division')->textInput(['class' => 'form-control']); ?>
-            </div>
-            <div class="col-sm-4">
-                <?= $form->field($model, 'wdate')->widget(
+                <?= $form->field($model, 'dateAt')->widget(
                     DatePicker::class, [
                         'format' => 'd.m.Y',
                         'options' => [
@@ -32,16 +40,8 @@ use app\widgets\DatePicker;
                         'params' => [
                             'weeks' => true,
                         ],
-                    ]); ?>
-            </div>
-<!--            <div class="col-sm-4">
-                <?= $form->field($model, 'startTime')->textInput(['class' => 'form-control']); ?>
-            </div>
-            <div class="col-sm-4">
-                <?= $form->field($model, 'endTime')->textInput(['class' => 'form-control']); ?>
-            </div>-->
-            <div class="col-sm-4">
-                <?= $form->field($model, 'class')->textInput(['class' => 'form-control']); ?>
+                    ]);
+                ?>
             </div>
             <div class="col-sm-3">
                 <div class="form-group"> 

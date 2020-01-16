@@ -31,17 +31,24 @@ $config = [
         ],
         'db' => require(__DIR__ . '/db.php'),
         
-        'dictionary' => [
-            'class' => 'yii\db\Connection',
-            'dsn' => 'mysql:host=localhost;dbname=rus_dictionary',
-            'username' => 'root',
-            'password' => 'hexrf88',
-            'charset' => 'utf8',
-        ],
+//        'dictionary' => [
+//            'class' => 'yii\db\Connection',
+//            'dsn' => 'mysql:host=localhost;dbname=rus_dictionary',
+//            'username' => 'root',
+//            'password' => 'hexrf88',
+//            'charset' => 'utf8',
+//        ],
         
         'schedule' => [
             'class' => 'yii\db\Connection',
             'dsn' => 'mysql:host=localhost;dbname=schedule',
+            'username' => 'root',
+            'password' => 'hexrf88',
+            'charset' => 'utf8',
+        ],
+        'schedule_info' => [
+            'class' => 'yii\db\Connection',
+            'dsn' => 'mysql:host=localhost;dbname=iro_info',
             'username' => 'root',
             'password' => 'hexrf88',
             'charset' => 'utf8',

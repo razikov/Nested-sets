@@ -4,17 +4,18 @@ namespace app\controllers;
 
 use Yii;
 use yii\web\Controller;
-use app\models\Schedule;
-use app\models\ScheduleSearch;
+use app\models\InfoCourseSearch;
+use app\models\InfoCourseThemesSearch;
+use app\models\ReservationClassroom;
 use yii\web\Response;
 
-class ScheduleController extends Controller
+class ScheduleInfoController extends Controller
 {
     public $layout = 'schedule_main';
 
     public function actionIndex()
     {
-        $searchModel = new ScheduleSearch();
+        $searchModel = new InfoCourseSearch();
         
         $dataProvider = $searchModel->search(\Yii::$app->request->queryParams);
         
@@ -25,11 +26,48 @@ class ScheduleController extends Controller
         ]);
     }
     
-    public function actionPresentation()
+    public function actionThemes()
     {
+        $searchModel = new InfoCourseThemesSearch();
+        
+        $dataProvider = $searchModel->search(\Yii::$app->request->queryParams);
+        $dataProvider->sort = [
+            'defaultOrder' => [
+                'Date1' => SORT_DESC,
+            ]
+        ];
+        
+        return $this->render('themes', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+    
+    public function actionThemesModal($courseId)
+    {
+        $searchModel = new InfoCourseThemesSearch();
+        $searchModel->IDCourse = $courseId;
+        $course = InfoCourseSearch::findOne(['ID' => $courseId]);
+        
+        $dataProvider = $searchModel->search(\Yii::$app->request->queryParams);
+        $dataProvider->pagination = false;
+        
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        
+        return ['form' => $this->renderPartial('_modal_themes', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'courseName' => $course->Name ?? '',
+        ])];
+        
+    }
+    
+    public function actionPresentation($date = null)
+    {
+        $date = $date ?? date("Y-m-d");
 //        $this->layout = 'schedule_blank';
-        $searchModel = new ScheduleSearch();
-        $searchModel->eventDate = date("d.m.Y");
+        $searchModel = new InfoCourseThemesSearch();
+        $searchModel->Date1 = $date;
         
         $dataProvider = $searchModel->search(\Yii::$app->request->queryParams);
         
@@ -118,6 +156,47 @@ class ScheduleController extends Controller
     public function actionDelete($id)
     {
         $model = Schedule::findOne($id);
+        
+        if (!$model) {
+            throw new NotFoundHttpException;
+        }
+        
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        return ['success' => (int)$model->delete(), 'errors' => Html::errorSummary($model)];
+    }
+    
+    public function actionCreateClass($idTheme = null)
+    {   
+        $model = new ReservationClassroom();
+        $model->id_themes = $idTheme;
+
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return ['model' => $model];
+        } else {
+            return ['form' => $this->renderPartial('_form_class', ['model' => $model])];
+        }
+    }
+    
+    public function actionUpdateClass($id)
+    {
+        $model = ReservationClassroom::findOne($id);
+        
+        if (!$model) {
+            throw new NotFoundHttpException();
+        }
+
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return ['model' => $model];
+        } else {
+            return ['form' => $this->renderPartial('_form_class', ['model' => $model])];
+        }
+    }
+    
+    public function actionDeleteClass($id)
+    {
+        $model = ReservationClassroom::findOne($id);
         
         if (!$model) {
             throw new NotFoundHttpException;

@@ -30,9 +30,9 @@ use app\widgets\TimePicker;
 <?= $form->field($model, 'teacher')->textInput(['class' => 'form-control']); ?>
 <?= $form->field($model, 'name')->textInput(['class' => 'form-control']); ?>
 <?= $form->field($model, 'division')->textInput(['class' => 'form-control']); ?>
-<?= $form->field($model, 'wdate')->widget(
+<?= $form->field($model, 'eventDate')->widget(
         DatePicker::class, [
-            'format' => 'd.m.Y',
+            'format' => 'Y.m.d',
             'options' => [
                 'class' => 'form-control',
             ],

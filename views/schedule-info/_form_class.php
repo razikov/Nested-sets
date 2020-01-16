@@ -5,6 +5,8 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use app\widgets\DatePicker;
 use app\widgets\TimePicker;
+use app\widgets\Select;
+use app\models\Classroom;
 
 /**
  * @var $this yii\web\View
@@ -19,7 +21,7 @@ use app\widgets\TimePicker;
             'Редактирование'
         )).'</h4>',
     'footer' =>
-        Html::button(Yii::t('app', 'Закрыть'), ['class' => 'btn btn-sm btn-default', 'data-dismiss' => 'modal']).
+        Html::button(Yii::t('app', 'Закрыть'), ['class' => 'btn btn-default', 'data-dismiss' => 'modal']).
         Html::button(
             $model->isNewRecord ? Yii::t('app', 'Добавить') : Yii::t('app', 'Сохранить'),
             ['class' => 'btn btn-primary js-submit']
@@ -27,22 +29,18 @@ use app\widgets\TimePicker;
 ]); ?>
 <?= Html::errorSummary($model) ?>
 <?php $form = ActiveForm::begin(['options' => ['autocomplete' => 'off']]); ?>
-<?= $form->field($model, 'teacher')->textInput(['class' => 'form-control']); ?>
-<?= $form->field($model, 'name')->textInput(['class' => 'form-control']); ?>
-<?= $form->field($model, 'division')->textInput(['class' => 'form-control']); ?>
-<?= $form->field($model, 'wdate')->widget(
-        DatePicker::class, [
-            'format' => 'd.m.Y',
-            'options' => [
-                'class' => 'form-control',
-            ],
-            'params' => [
-                'weeks' => true,
-            ],
-        ]);
+<?= $form->field($model, 'classroom')->widget(
+    Select::class, [
+        'options' => [
+            'class' => 'form-control',
+            'data-style' => 'btn-default',
+            'data-live-search' => 1,
+            'prompt' => Yii::t('app', 'Ничего не выбрано'),
+        ],
+        'items' => Classroom::getList()
+    ])
 ?>
 <?= $form->field($model, 'startTime')->widget(TimePicker::class, []); ?>
 <?= $form->field($model, 'endTime')->widget(TimePicker::class, []); ?>
-<?= $form->field($model, 'class')->textInput(['class' => 'form-control']); ?>
 <?php ActiveForm::end(); ?>
 <?php Modal::end() ?>

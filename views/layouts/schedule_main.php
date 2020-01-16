@@ -41,30 +41,42 @@ $now = new DateTimeImmutable();
             'options' => ['class' => 'navbar-nav navbar-right'],
             'items' => [
                 [
-                    'label' => \Yii::t('app', 'Загрузить'),
-                    'url' => ['/schedule/upload'],
+                    'label' => \Yii::t('app', 'на импорте'),
+                    'url' => '#',
+                    'items' => [
+                        [
+                            'label' => \Yii::t('app', 'Список'),
+                            'url' => ['/schedule/index'],
+        //                    'visible' => !$isGuest,
+                        ],
+                        [
+                            'label' => \Yii::t('app', 'Расписание'),
+                            'url' => ['/schedule/presentation'],
+        //                    'visible' => !$isGuest,
+                        ],
+                    ],
 //                    'visible' => !$isGuest,
                 ],
                 [
-                    'label' => \Yii::t('app', 'Список'),
-                    'url' => ['/schedule/index'],
-//                    'visible' => !$isGuest,
-                ],
-                [
-                    'label' => \Yii::t('app', 'Расписание'),
-                    'url' => ['/schedule/presentation'],
-//                    'visible' => !$isGuest,
-                ],
-                [
-                    'label' => \Yii::t('app', 'Аудитории'),
-                    'url' => ['/schedule/show'],
-//                    'items' => [
-//                        ['label' => \Yii::t('app', 'Дерево'), 'url' => ['/tree/list'], 'visible' => !$isGuest],
-//                        ['label' => \Yii::t('app', 'Пользователи'), 'url' => ['/user/list'], 'visible' => !$isGuest],
-//                        ['label' => \Yii::t('app', 'Файлы'), 'url' => ['/files/list'], 'visible' => !$isGuest],
-//                        ['label' => \Yii::t('app', 'Статистика'), 'visible' => !$isGuest],
-//                        ['label' => \Yii::t('app', 'по сессиям'), 'url' => ['/statistics/session'], 'visible' => !$isGuest],
-//                    ],
+                    'label' => \Yii::t('app', 'на информсистеме'),
+                    'url' => '#',
+                    'items' => [
+                        [
+                            'label' => \Yii::t('app', 'Список курсов'),
+                            'url' => ['/schedule-info/index'],
+        //                    'visible' => !$isGuest,
+                        ],
+                        [
+                            'label' => \Yii::t('app', 'Список занятий'),
+                            'url' => ['/schedule-info/themes'],
+        //                    'visible' => !$isGuest,
+                        ],
+                        [
+                            'label' => \Yii::t('app', 'Расписание'),
+                            'url' => ['/schedule-info/presentation'],
+        //                    'visible' => !$isGuest,
+                        ],
+                    ],
 //                    'visible' => !$isGuest,
                 ],
             ]
