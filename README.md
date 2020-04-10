@@ -17,7 +17,7 @@
 # Установка
 
 1. git clone https://github.com/razikov/Nested-sets.git
-2. Настроить сервер для yii приложения, настроить конфиги
+2. cp ./config/db.sample.php ./config/db.php и настроить. Настроить сервер для yii приложения.
 3. cd ./Nested-sets
 4. composer install
 5. ./yii migrate/up
