@@ -11,6 +11,7 @@ class AdventofcodeController extends Controller
     public function actionQ2($n = 289326)
     {
         $helper = new AdventOfCode();
+        exit;
     }
     
     public function actionQ2d($n = 289326)
@@ -33,10 +34,12 @@ class AdventofcodeController extends Controller
             $sequence[] = $seqNumber;
         }
         print($helper->printMatrix($matrix, $radius));
+        exit;
     }
     
     public function actionQ3($n = 289326)
     {
         $helper = new AdventOfCode();
+        exit;
     }
 }
