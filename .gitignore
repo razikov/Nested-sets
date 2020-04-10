@@ -8,3 +8,4 @@
 .ac-php-conf.json
 /web/uploads/*
 yarn-error.log
+/config/db.php
