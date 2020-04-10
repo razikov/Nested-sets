@@ -1,8 +1,8 @@
 <?php
+
 namespace app\models;
 
 use yii\db\ActiveRecord;
-
 use app\models\Definitions;
 
 class Terms extends ActiveRecord
@@ -22,5 +22,4 @@ class Terms extends ActiveRecord
     {
         return $this->hasMany(Definitions::className(), ['term_id' => 'id']);
     }
-
 }

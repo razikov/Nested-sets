@@ -2,25 +2,20 @@
 
 namespace app\controllers;
 
-use Yii;
+use app\models\AdventOfCode;
 use yii\web\Controller;
-use app\models\TreeForm;
-use app\models\NestedSets;
-use app\helpers\NestedSetsHelper;
-use app\helpers\Tree;
 
 class AdventofcodeController extends Controller
 {
     
     public function actionQ2($n = 289326)
     {
-        $helper = new \app\models\AdventOfCode();
-        
+        $helper = new AdventOfCode();
     }
     
     public function actionQ2d($n = 289326)
     {
-        $helper = new \app\models\AdventOfCode();
+        $helper = new AdventOfCode();
         $seqNumber = 1;
         $point = [0, 0];
         $matrix = [$point[0] => [$point[1] => $seqNumber]];
@@ -38,13 +33,10 @@ class AdventofcodeController extends Controller
             $sequence[] = $seqNumber;
         }
         print($helper->printMatrix($matrix, $radius));
-        var_dump(array_pop($sequence));exit;
     }
     
     public function actionQ3($n = 289326)
     {
-        $helper = new \app\models\AdventOfCode();
-        
+        $helper = new AdventOfCode();
     }
-    
 }

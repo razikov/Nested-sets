@@ -2,18 +2,12 @@
 
 namespace app\helpers;
 
-/**
- * Description of ViewHelper
- *
- * @author razikov
- */
 class NestedSetsHelper
 {
     /*
      * Генерирует массив элементов, либо возвращает false в случае провала.
-     * @return false/array
+     * @return false|array
      */
-
     public function generate($n = 5)
     {
         // Нельзя создать дерево с количеством элементов меньше 1
@@ -107,5 +101,4 @@ class NestedSetsHelper
         }
         return $tree;
     }
-
 }

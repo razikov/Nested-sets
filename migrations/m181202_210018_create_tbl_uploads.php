@@ -2,9 +2,6 @@
 
 use yii\db\Migration;
 
-/**
- * Class m181202_210018_create_tbl_uploads
- */
 class m181202_210018_create_tbl_uploads extends Migration
 {
     public function safeUp()

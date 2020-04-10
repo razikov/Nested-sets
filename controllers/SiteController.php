@@ -7,11 +7,9 @@ use yii\web\Controller;
 use app\models\TreeForm;
 use app\models\NestedSets;
 use app\helpers\NestedSetsHelper;
-use app\helpers\Tree;
 
 class SiteController extends Controller
 {
-    
     public function beforeAction($action)
     {
         if ($action->id == 'upload') {
@@ -45,24 +43,6 @@ class SiteController extends Controller
         return $this->render('index', ['model' => $form, 'items' => $tree]);
     }
     
-    public function actionTree()
-    {
-        $tree = new Tree();
-        $data = \app\fixtures\DataTree::getData();
-//        $treeData = $tree->createTree(['userId', 'groupId', 'id'], $data);
-        $treeData = $tree->createTree(['groupId', 'userId', 'id'], $data);
-//        $avgData = $tree->getTreeAvg('param1', $treeData);
-//        $countData = $tree->getTreeCount('param1', $treeData);
-        $availablePaths = $tree->getMaterializedPathsTree($treeData);
-        $getKey = $tree->getBranchPath($availablePaths[1]);
-        var_dump(\yii\helpers\ArrayHelper::getValue($treeData, $getKey), $availablePaths, $treeData['rows'][6]['rows'][2]);
-    }
-    
-//    public function actionError()
-//    {
-//        return $this->redirect('/');
-//    }
-    
     public function actionNestedSets()
     {
         $form = new TreeForm();
@@ -94,9 +74,9 @@ class SiteController extends Controller
         
         if (Yii::$app->request->isPost) {
             $file = \yii\web\UploadedFile::getInstanceByName('file');
-            $mimeType = $file->type;// || FileHelper::getMimeType($this->file->tempName);
-            $extension = pathinfo($file->name, PATHINFO_EXTENSION);// || 'undefined';
-            $newFileName = sha1_file($file->tempName).'.'. $extension;
+            $mimeType = $file->type;
+            $extension = pathinfo($file->name, PATHINFO_EXTENSION);
+            $newFileName = sha1_file($file->tempName) . '.' . $extension;
 
             $fileStorage = Yii::$app->get('storageContainer')->getFileStorageByUploadType(\app\models\Upload::TYPE_LOCAL);
             $model->filename = $fileStorage->upload(
@@ -132,5 +112,4 @@ class SiteController extends Controller
         var_dump($res);
         exit;
     }
-
 }

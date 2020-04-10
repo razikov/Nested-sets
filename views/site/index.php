@@ -6,7 +6,6 @@ use app\helpers\NestedSetsHelper;
 
 $this->title = 'Tests';
 
-
 ?>
 <div class="site-index">
     <?php

@@ -6,14 +6,14 @@ class AdventOfCode
 {
     public function calcucate($matrix, $x, $y)
     {
-        $a7 = $matrix[$x-1][$y+1] ?? 0;
-        $a8 = $matrix[$x][$y+1] ?? 0;
-        $a9 = $matrix[$x+1][$y+1] ?? 0;
-        $a4 = $matrix[$x-1][$y] ?? 0;
-        $a6 = $matrix[$x+1][$y] ?? 0;
-        $a1 = $matrix[$x-1][$y-1] ?? 0;
-        $a2 = $matrix[$x][$y-1] ?? 0;
-        $a3 = $matrix[$x+1][$y-1] ?? 0;
+        $a7 = $matrix[$x - 1][$y + 1] ?? 0;
+        $a8 = $matrix[$x][$y + 1] ?? 0;
+        $a9 = $matrix[$x + 1][$y + 1] ?? 0;
+        $a4 = $matrix[$x - 1][$y] ?? 0;
+        $a6 = $matrix[$x + 1][$y] ?? 0;
+        $a1 = $matrix[$x - 1][$y - 1] ?? 0;
+        $a2 = $matrix[$x][$y - 1] ?? 0;
+        $a3 = $matrix[$x + 1][$y - 1] ?? 0;
         $sum = array_sum([$a1, $a2, $a3, $a4, $a6, $a7, $a8, $a9]);
         return $sum;
     }
@@ -32,7 +32,6 @@ class AdventOfCode
         } elseif ($step <= $length * 4) {
             $newPoint = [++$point[0], $point[1]];
         } else {
-            var_dump('Ошибка!');exit;
             return false;
         }
         if ($step == $length * 4) {

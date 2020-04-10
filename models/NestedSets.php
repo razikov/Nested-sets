@@ -2,15 +2,8 @@
 
 namespace app\models;
 
-use Yii;
 use yii\db\ActiveRecord;
-use app\traits\GeneratorNestedSets;
 
-/**
- * Description of NestedSets
- *
- * @author razikov
- */
 class NestedSets extends ActiveRecord
 {
 
@@ -24,11 +17,12 @@ class NestedSets extends ActiveRecord
      */
     public function getThread()
     {
-        return self::find()
-                        ->andWhere(['>=', 'lft', $this->lft])
-                        ->andWhere(['<=', 'rgt', $this->rgt])
-                        ->orderBy('lft')
-                        ->all();
+        $threads = self::find()
+            ->andWhere(['>=', 'lft', $this->lft])
+            ->andWhere(['<=', 'rgt', $this->rgt])
+            ->orderBy('lft')
+            ->all();
+        return $threads;
     }
 
     public static function getRoot()
@@ -67,5 +61,4 @@ class NestedSets extends ActiveRecord
         }
         return $items;
     }
-
 }

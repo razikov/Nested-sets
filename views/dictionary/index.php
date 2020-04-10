@@ -25,9 +25,7 @@ $action = ['index'];
         <div class="col-sm-3">
             <div class="form-group">
                 <?= Html::submitButton(Yii::t('app', 'Найти'), ['class' => 'btn btn-sm btn-primary']) ?>
-                <?= Html::a(Yii::t('app', 'Сброс'),
-                        $action, 
-                        ['class' => 'btn btn-sm btn-default']) ?>
+                <?= Html::a(Yii::t('app', 'Сброс'), $action, ['class' => 'btn btn-sm btn-default']) ?>
             </div>
         </div>
     </div>
@@ -43,21 +41,9 @@ $action = ['index'];
         [
             'attribute' => 'term',
             'value' => function ($item) {
-//                var_dump($item);exit;
                 return $item->term ? $item->term->name : 'неизвестно';
             }
         ],
         'definition',
-//        [
-//            'header' => 'definition',
-//            'format' => 'html',
-//            'value' => function ($item) {
-//                $definitions = [];
-//                foreach ($item->definitions as $definition) {
-//                    $definitions[$definition->id] = $definition->definition;
-//                }
-//                return Html::ol($definitions);
-//            }
-//        ],
     ],
 ]); ?>

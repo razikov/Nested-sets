@@ -5,16 +5,6 @@ class UploadAdapter {
     }
 
     upload() {
-        // Update loader's progress.
-//        server.onUploadProgress( data => {
-//            loader.uploadTotal = data.total;
-//            loader.uploaded = data.uploaded;
-//        } ):
-
-        // Return promise that will be resolved when file is uploaded.
-//        return server.upload( loader.file );
-        
-//        console.log();
         let _this = this;
         let formData = new FormData();
         formData.append("file", this.loader.file);
@@ -29,7 +19,6 @@ class UploadAdapter {
             }).then(data => {
                 _this.loader.uploaded = data.uploaded;
                 console.log(data, _this.loader);
-//                resolve(resData);
             }).catch(error => {
                 console.log(error);
                 reject(error);
@@ -39,7 +28,5 @@ class UploadAdapter {
     }
 
     abort() {
-        // Reject promise returned from upload() method.
-        // server.abortUpload();
     }
 }        

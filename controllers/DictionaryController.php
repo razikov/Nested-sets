@@ -2,13 +2,11 @@
 
 namespace app\controllers;
 
-use Yii;
 use yii\web\Controller;
 use app\models\DefinitionSearch;
 
 class DictionaryController extends Controller
 {
-    
     public function actionIndex()
     {
         $searchModel = new DefinitionSearch();
@@ -19,5 +17,4 @@ class DictionaryController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
-    
 }

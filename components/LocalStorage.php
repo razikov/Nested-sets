@@ -25,7 +25,7 @@ class LocalStorage extends Component implements FileStorageInterface
      */
     public function upload($filePath, $fileName, $mime)
     {
-        $destinationPath = Yii::getAlias($this->basePath.'/'.$fileName);
+        $destinationPath = Yii::getAlias($this->basePath . '/' . $fileName);
         copy($filePath, $destinationPath);
 
         return $fileName;
@@ -42,6 +42,6 @@ class LocalStorage extends Component implements FileStorageInterface
             throw new Exception("Неизвестный тип хранилища {$upload->type}");
         }
 
-        return $this->baseUrl.'/'.$upload->filename;
+        return $this->baseUrl . '/' . $upload->filename;
     }
 }

@@ -8,9 +8,6 @@ use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\db\Expression;
 
-/**
- * 
- */
 class Upload extends ActiveRecord
 {
     const TYPE_LOCAL = 1;
@@ -67,5 +64,4 @@ class Upload extends ActiveRecord
 
         return $fileStorage->getUrl($this);
     }
-    
 }

@@ -17,8 +17,9 @@
 # Установка
 
 1. git clone https://github.com/razikov/Nested-sets.git
-2. cd ./Nested-sets
-3. composer install
-4. ./yii migrate/up
-5. ./yii serve
-6. http://localhost:8080/
+2. Настроить сервер для yii приложения, настроить конфиги
+3. cd ./Nested-sets
+4. composer install
+5. ./yii migrate/up
+6. ./yii serve
+7. http://localhost:8080/

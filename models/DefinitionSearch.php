@@ -1,4 +1,5 @@
 <?php
+
 namespace app\models;
 
 use app\models\Definitions;
@@ -36,5 +37,4 @@ class DefinitionSearch extends Definitions
             ]
         );
     }
-
 }

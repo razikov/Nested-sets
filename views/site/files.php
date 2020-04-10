@@ -2,7 +2,6 @@
 
 use yii\grid\GridView;
 use yii\helpers\Html;
-use yii\helpers\Url;
 
 ?>
 
@@ -15,9 +14,9 @@ use yii\helpers\Url;
         [
             'format' => 'html',
             'attribute' => 'url',
-            'value' => function($item) {
+            'value' => function ($item) {
                 return Html::a($item->url, $item->url);
             },
         ]
     ],
-]); ?>
+]);

@@ -5,13 +5,16 @@ $params = require(__DIR__ . '/params.php');
 $config = [
     'id' => 'tests',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log', 'debug'],
+    'bootstrap' => ['log'],
     'components' => [
         'request' => [
             'cookieValidationKey' => 'SX91nJePfKE1e1oX-5mCTZue_78cADop',
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
+        ],
+        'arrayCache' => [
+            'class' => \yii\caching\ArrayCache::class,
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -31,27 +34,14 @@ $config = [
         ],
         'db' => require(__DIR__ . '/db.php'),
         
-//        'dictionary' => [
-//            'class' => 'yii\db\Connection',
-//            'dsn' => 'mysql:host=localhost;dbname=rus_dictionary',
-//            'username' => 'root',
-//            'password' => 'hexrf88',
-//            'charset' => 'utf8',
-//        ],
-        
-        'schedule' => [
-            'class' => 'yii\db\Connection',
-            'dsn' => 'mysql:host=localhost;dbname=schedule',
-            'username' => 'root',
-            'password' => 'hexrf88',
-            'charset' => 'utf8',
-        ],
-        'schedule_info' => [
-            'class' => 'yii\db\Connection',
-            'dsn' => 'mysql:host=localhost;dbname=iro_info',
-            'username' => 'root',
-            'password' => 'hexrf88',
-            'charset' => 'utf8',
+        'formatter' => [
+            'class' => 'yii\i18n\Formatter',
+            'dateFormat' => 'dd.MM.yyyy',
+            'datetimeFormat' => 'dd.MM.yyyy HH:mm',
+            'nullDisplay' => '',
+            'currencyCode' => 'RUB',
+            'defaultTimeZone' => 'Europe/Moscow',
+            'timeZone' => 'Europe/Moscow',
         ],
 
         'urlManager' => [
@@ -60,7 +50,9 @@ $config = [
             'rules' => [
                 'thread/<ids:(\d+)(,\d+)+>' => 'site/thread',
                 'thread/<ids:(\d+)>' => 'site/thread',
-                'aoc/<action>' => 'adventofcode/<action>',
+//                'aoc/<action>' => 'adventofcode/<action>',
+                "<controller>/<action>" => "<controller>/<action>",
+//                "<module>/<controller>/<action>" => "<module>/<controller>/<action>",
             ],
         ],
         'storageContainer' => [
@@ -81,27 +73,13 @@ $config = [
         ],
         'defaultRoute' => 'site/index',
     ],
-    'modules' => [
-        'gurps' => [
-            'class' => 'app\modules\gurps\Module',
-        ],
-        'UserImportExport' => [
-            'class' => 'app\modules\UserImportExport\Module',
-        ],
-    ],
     'params' => $params,
-    'language' => 'ru-RU',
 ];
 
 if (YII_ENV_DEV) {
     $config['bootstrap'][] = 'debug';
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
-    ];
-
-    $config['bootstrap'][] = 'gii';
-    $config['modules']['gii'] = [
-        'class' => 'yii\gii\Module',
     ];
 }
 

@@ -1,4 +1,5 @@
 <?php
+
 namespace app\models;
 
 use yii\db\ActiveRecord;
@@ -9,7 +10,8 @@ class Definitions extends ActiveRecord
     
     public static function getDb()
     {
-        return \Yii::$app->get('dictionary');
+//        return \Yii::$app->get('dictionary');
+        return \Yii::$app->get('db');
     }
 
     public static function tableName()
@@ -21,5 +23,4 @@ class Definitions extends ActiveRecord
     {
         return $this->hasOne(Terms::className(), ['id' => 'term_id']);
     }
-
 }

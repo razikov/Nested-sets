@@ -62,20 +62,20 @@ $this->registerJs('
 ');
 ?>
 <div>
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'columns' => [
-            'id',
-            'title',
-            [
-        	'attribute' => 'description',
-        	'format' => 'html',
-        	'value' => function ($item) {
-                    return Html::a('Модалка', Url::toRoute(['site/update-modal-article', 'id' => $item->id]), [
-                        'class' => 'btn btn-default js-update-modal',
-                    ]);
-        	},
-            ],
+<?= GridView::widget([
+    'dataProvider' => $dataProvider,
+    'columns' => [
+        'id',
+        'title',
+        [
+            'attribute' => 'description',
+            'format' => 'html',
+            'value' => function ($item) {
+                return Html::a('Модалка', Url::toRoute(['site/update-modal-article', 'id' => $item->id]), [
+                    'class' => 'btn btn-default js-update-modal',
+                ]);
+            },
         ],
-    ]) ?>
+    ],
+]) ?>
 </div>

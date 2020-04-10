@@ -55,9 +55,7 @@ class LoggableBehavior extends Behavior
                     throw new ErrorException(\Yii::t('app', 'Ошибка сохранения Истории изменений'));
                 }
             }
-            
         }
-        
     }
     
     public function customAfterDelete($event)

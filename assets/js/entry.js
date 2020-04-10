@@ -35,7 +35,6 @@ function getPointOffset(corner, orientation, size) {
   
 function calculateCoordinates(center, orientation) {
     var corners = [];
-//    const center = new Point(0, 0);
     const size = new Point(10, 10);
 
     for (let i = 0; i < 6; i++) {
@@ -70,7 +69,6 @@ function render() {
     
 function test() {
     console.log('ok');
-//    console.log(rectangle(10,10));
     console.log(renderHexagon(render()));
 }
 

@@ -20,7 +20,7 @@ class HistoryChange extends ActiveRecord
     {
         return [
             [['model_name', 'model_id', 'attribute'], 'required'],
-            [['action', 'model_id', 'user_id'], 'integer'],
+            [['action', 'model_id', 'change_by'], 'integer'],
             [['action'], 'default', 'value' => self::ACTION_UPDATE],
             [['model_name', 'attribute'], 'string', 'max' => 255],
         ];
@@ -46,13 +46,13 @@ class HistoryChange extends ActiveRecord
             'new_value' => \Yii::t('app', 'Новое Значение'),
             'action' => \Yii::t('app', 'Действие'),
             'change_at' => \Yii::t('app', 'Изменено'),
-            'user_id' => \Yii::t('app', 'Изменил'),
+            'change_by' => \Yii::t('app', 'Изменил'),
         );
     }
     
     public function getUser()
     {
-        return User::findIdentity($this->user_id);
+        return User::findIdentity($this->change_by);
     }
     
     public function behaviors()
@@ -68,8 +68,8 @@ class HistoryChange extends ActiveRecord
             ],
             [
                 'class' => BlameableBehavior::class,
-                'createdByAttribute' => 'user_id',
-                'updatedByAttribute' => 'user_id',
+                'createdByAttribute' => 'change_by',
+                'updatedByAttribute' => 'change_by',
             ],
         ];
     }
