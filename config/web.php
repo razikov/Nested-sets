@@ -6,6 +6,10 @@ $config = [
     'id' => 'tests',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'aliases' => [
+        '@bower' => '@vendor/bower-asset',
+        '@npm'   => '@vendor/npm-asset',
+    ],
     'components' => [
         'request' => [
             'cookieValidationKey' => 'SX91nJePfKE1e1oX-5mCTZue_78cADop',
